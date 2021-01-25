@@ -10,6 +10,7 @@ namespace Assignment7_AuctionSystem
         private double reservePrice;
         private double highestBid;
         private int bidderIDNumber;
+        private bool isSelling;
 
 
          public Item(string description,double reservePrice)
@@ -17,6 +18,7 @@ namespace Assignment7_AuctionSystem
             this.description = description;
             this.reservePrice = reservePrice;
             highestBid = 0;
+            this.isSelling = true;
         }
 
         public string getDescription()
@@ -31,9 +33,13 @@ namespace Assignment7_AuctionSystem
         {
             return highestBid;
         }
-        public int getBidderId()
+        public int getHighestBidderId()
         {
             return bidderIDNumber;
+        }
+        public bool getStatus()
+        {
+            return isSelling;
         }
 
         public bool setHighestBid(double newBid)
@@ -51,7 +57,7 @@ namespace Assignment7_AuctionSystem
 
         }
 
-        public void setBidderID(int newID)
+        public void setHighestBidderID(int newID)
         {
             bidderIDNumber = newID;
         }
@@ -61,7 +67,17 @@ namespace Assignment7_AuctionSystem
             return description + " " + highestBid + " " + reservePrice;
         }
 
-        
+        public void endAuction()
+        {
+            if (highestBid >= reservePrice)
+            {
+                isSelling = false;
+            }
+            else
+            {
+                Console.WriteLine(description + " can't be sold at this price");
+            }
+        }
 
     }
 }
